@@ -1,0 +1,6 @@
+
+Renishaw DX10 Software Development Kit (SDK) 
+
+Copyright Renishaw plc 2007-2011
+
+Ver=2011-01-11, 2.05.04

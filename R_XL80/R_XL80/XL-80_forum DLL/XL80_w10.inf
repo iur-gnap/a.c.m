@@ -1,0 +1,271 @@
+;
+; XL device Setup Information file V3.10
+; Copyright (c) 1998-2017 by Renishaw plc
+;
+; This file supports:
+;     Windows 10         Windows 10 x64
+;
+
+
+;******************************************************************************
+; Version Section
+;------------------------------------------------------------------------------
+[Version]
+Signature="$Windows NT$"
+Provider=%S_Provider%
+DriverVer=03/14/2017,3.10.0.0
+CatalogFile=XL80_W10.cat
+Class=MeasurementCalibrationDevices
+ClassGUID={28653A95-DA33-4ac6-9D3C-8BA6A43E225F}
+
+
+;******************************************************************************
+; Class Install section (optional)
+;------------------------------------------------------------------------------
+[ClassInstall32] 
+AddReg=_AddReg_ClassInstall
+CopyFiles=_RenClassInstallerCopyFiles
+
+[_AddReg_ClassInstall]
+HKR,,,,%S_DeviceClassDisplayName%
+HKR,,Icon,,"109"
+HKR,,Installer32,,"renclassinst.dll, RenClassInstaller"
+
+;******************************************************************************
+; Options
+;------------------------------------------------------------------------------
+[ControlFlags]
+; Advanced options can be specified here.
+
+
+;******************************************************************************
+; Manufacturer section
+;------------------------------------------------------------------------------
+[Manufacturer]
+; 10.0 - Windows 10
+%S_Mfg%=_Models, ntx86.10.0, ntamd64.10.0
+
+
+;******************************************************************************
+; Models Section
+;------------------------------------------------------------------------------
+; x86-based
+[_Models.ntx86.10.0]
+%S_XL80DeviceDescription%=_Install_XL80, USB\VID_0837&PID_0012
+%S_XL30DeviceDescription%=_Install_XL30, USB\VID_0837&PID_001B
+%S_RsuDeviceDescription%=_Install_XL80, USB\VID_0837&PID_001D
+%S_XL30HDeviceDescription%=_Install_XL30, USB\VID_0837&PID_003E
+
+
+; x64-based
+[_Models.ntamd64.10.0]
+%S_XL80DeviceDescription%=_Install_XL80, USB\VID_0837&PID_0012
+%S_XL30DeviceDescription%=_Install_XL30, USB\VID_0837&PID_001B
+%S_RsuDeviceDescription%=_Install_XL80, USB\VID_0837&PID_001D
+%S_XL30HDeviceDescription%=_Install_XL30, USB\VID_0837&PID_003E
+
+;******************************************************************************
+; Install sections x86-based systems
+;------------------------------------------------------------------------------
+[_Install_XL80.ntx86]
+CopyFiles=_CopyFiles_sys_x86
+
+[_Install_XL30.ntx86]
+CopyFiles=_CopyFiles_sys_x86
+
+[_Install_XL80.ntx86.HW]
+DelReg=_DelReg_HW
+AddReg=_AddReg_HW
+AddReg=_AddReg_XL80
+
+[_Install_XL30.ntx86.HW]
+DelReg=_DelReg_HW
+AddReg=_AddReg_HW
+AddReg=_AddReg_XL30
+
+[_Install_XL80.ntx86.Services]
+AddService = XL80, 0x00000002, _AddService_x86, _EventLog_x86
+
+[_Install_XL30.ntx86.Services]
+AddService = XL80, 0x00000002, _AddService_x86, _EventLog_x86
+
+[_AddService_x86]
+DisplayName    = %S_ServiceDisplayName%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\XL80.sys
+
+[_EventLog_x86]
+AddReg=_EventLog_AddReg_x86
+
+[_EventLog_AddReg_x86]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\drivers\XL80.sys"
+HKR,,TypesSupported,  %REG_DWORD%,7
+
+
+;******************************************************************************
+; Install sections x64-based systems
+;------------------------------------------------------------------------------
+[_Install_XL80.ntamd64]
+CopyFiles=_CopyFiles_sys_x64
+
+[_Install_XL30.ntamd64]
+CopyFiles=_CopyFiles_sys_x64
+
+[_Install_XL80.ntamd64.HW]
+DelReg=_DelReg_HW
+AddReg=_AddReg_HW
+AddReg=_AddReg_XL80
+
+[_Install_XL30.ntamd64.HW]
+DelReg=_DelReg_HW
+AddReg=_AddReg_HW
+AddReg=_AddReg_XL30
+
+[_Install_XL80.ntamd64.Services]
+AddService = XL80_x64, 0x00000002, _AddService_x64, _EventLog_x64
+
+[_Install_XL30.ntamd64.Services]
+AddService = XL80_x64, 0x00000002, _AddService_x64, _EventLog_x64
+
+[_AddService_x64]
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\XL80_x64.sys
+
+[_EventLog_x64]
+AddReg=_EventLog_x64_AddReg
+
+[_EventLog_x64_AddReg]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\drivers\XL80_x64.sys"
+HKR,,TypesSupported,  %REG_DWORD%,7
+
+
+;******************************************************************************
+; Registry sections
+;------------------------------------------------------------------------------
+[_DelReg_HW]
+HKR,,DriverUserInterfaceGuid
+HKR,,DisableDefaultInterface
+HKR,,CleanupWizard_DeviceIdentString
+HKR,,ConfigIndex
+HKR,,Interface
+HKR,,AlternateSetting
+HKR,,FxFwFile
+HKR,,FxBootloaderCheck
+HKR,,FxExtRamBase
+
+[_AddReg_XL80]
+HKR,,DriverUserInterfaceGuid,%REG_SZ%,"{3F186202-AFAE-41b5-B200-409378948520}"
+
+[_AddReg_XL30]
+HKR,,DriverUserInterfaceGuid,%REG_SZ%,"{EB7DEC5F-5233-4241-9991-66C007E29F01}"
+
+[_AddReg_HW]
+HKR,,DisableDefaultInterface, %REG_DWORD%, 1
+
+; Set the default behaviour of the driver 
+; For a description of the parameters, refer to the USBIO Reference Manual.
+HKR,,PowerStateOnOpen,      %REG_DWORD%, 0
+HKR,,PowerStateOnClose,     %REG_DWORD%, 0
+HKR,,MinPowerStateUsed,     %REG_DWORD%, 3
+HKR,,MinPowerStateUnused,   %REG_DWORD%, 3
+HKR,,EnableRemoteWakeup,    %REG_DWORD%, 0
+HKR,,AbortPipesOnPowerDown, %REG_DWORD%, 1
+; ATTENTION!!! UnconfigureOnClose must be set to '0' for W10 WHQL testing
+HKR,,UnconfigureOnClose,    %REG_DWORD%, 0
+HKR,,ResetDeviceOnClose,    %REG_DWORD%, 1
+HKR,,MaxIsoPackets,         %REG_DWORD%, 512
+HKR,,ShortTransferOk,       %REG_DWORD%, 1
+HKR,,RequestTimeout,        %REG_DWORD%, 1000
+HKR,,SuppressPnPRemoveDlg,  %REG_DWORD%, 1
+HKR,,ConfigDescMinQuerySize,%REG_DWORD%, 0
+
+; Uncomment the following lines to enable automatic configuration 
+; of the device when the USBIO driver starts.
+; ATTENTION!!! For W10 WHQL testing device must be configured if driver is started! Please enable ConfigIndex as minimum.
+HKR,,ConfigIndex,          %REG_DWORD%, 0
+HKR,,Interface,            %REG_DWORD%, 0
+HKR,,AlternateSetting,     %REG_DWORD%, 0
+
+
+;******************************************************************************
+; Copy Files section
+;------------------------------------------------------------------------------
+[_CopyFiles_sys_x86]
+XL80.sys,,,0x00000004
+
+[_CopyFiles_sys_x64]
+XL80_x64.sys,,,0x00000004
+
+[_RenClassInstallerCopyFiles]
+renclassinst.dll
+
+;******************************************************************************
+; Destination Directories
+;------------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir     =     12   ; %SystemRoot%\system32\drivers 
+_CopyFiles_sys_x86 =     12
+_CopyFiles_sys_x64 =     12
+_RenClassInstallerCopyFiles = 11 ; %SystemRoot%\system32 
+
+;******************************************************************************
+; Disk Layout
+;------------------------------------------------------------------------------
+[SourceDisksNames.x86]
+1=%S_DiskName%,,
+
+[SourceDisksNames.amd64]
+1=%S_DiskName%,,
+
+[SourceDisksFiles.x86]
+; Specify the correct file name of the driver binary.
+XL80.sys=1
+renclassinst.dll=1
+
+[SourceDisksFiles.amd64]
+; Specify the correct file name of the driver binary.
+XL80_x64.sys=1
+renclassinst.dll=1
+
+;******************************************************************************
+; Text Strings
+;------------------------------------------------------------------------------
+[Strings]
+;
+; Non-Localizable Strings, DO NOT MODIFY!
+;
+REG_SZ         = 0x00000000
+REG_MULTI_SZ   = 0x00010000
+REG_EXPAND_SZ  = 0x00020000
+REG_BINARY     = 0x00000001
+REG_DWORD      = 0x00010001
+
+;
+; Localizable Strings, modify as required
+;
+
+; provider name
+S_Provider="Renishaw plc" 
+; manufacturer name
+S_Mfg="Renishaw plc"
+
+; service display name 
+S_ServiceDisplayName= "Renishaw XL device driver"
+
+; device class display name, shown in Device Manager
+S_DeviceClassDisplayName= "Measurement and calibration devices"
+
+; device description
+S_XL80DeviceDescription= "Renishaw XL-80 USB Laser"
+S_XL30DeviceDescription= "Renishaw XL-30 USB Laser"
+S_XL30HDeviceDescription= "Renishaw XL-30H USB Laser"
+S_RsuDeviceDescription= "Renishaw RSU10 USB interpolator for RLE";
+
+; disk name
+S_DiskName= "Renishaw XL driver disk"
+
+; *** EOF ***

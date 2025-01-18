@@ -1,0 +1,185 @@
+;
+; DX10 USB Interface Setup Information file V2.1
+; Copyright (c) 2007 Renishaw plc
+;
+; This file supports:
+;    Windows XP (32-bit)
+;    Windows Vista (32-bit)
+;
+;******************************************************************************
+
+;******************************************************************************
+; Version Section - REQUIRED
+;------------------------------------------------------------------------------
+[Version]
+Signature="$Windows NT$"
+Provider = %S_Provider%
+DriverVer = 06/13/2007, ;
+
+; This specifies the .cat file provided by WHQL if the driver is certified.
+CatalogFile=DX10.cat
+
+; we use a private device class that is defined by Renishaw Calibration:
+Class = MeasurementCalibrationDevices;
+ClassGUID = {28653A95-DA33-4ac6-9D3C-8BA6A43E225F}
+
+;******************************************************************************
+; Manufacturer Section - REQUIRED
+;------------------------------------------------------------------------------
+[Manufacturer]
+%S_Mfg% = _Devices
+
+
+;******************************************************************************
+; New setup device class sections
+;------------------------------------------------------------------------------
+; Windows 2000/XP class install section
+[ClassInstall32]
+AddReg = _CustomClassAddReg
+CopyFiles=_RenClassInstallerCopyFiles
+
+[_RenClassInstallerCopyFiles]
+classinst.dll
+
+;******************************************************************************
+; Devices Section  (Windows 2000/XP DDKs call this the Models section)
+;------------------------------------------------------------------------------
+[_Devices]
+%S_DeviceDescription% = _Install, USB\VID_0837&PID_000b
+
+
+;******************************************************************************
+; Install Sections (Windows 2000/XP DDKs call this the DDInstall section)
+;------------------------------------------------------------------------------
+; Windows 2000/XP specific, Intel x86 platform
+[_Install.NTx86]
+CopyFiles = _CopyFiles_sys
+AddReg = _AddReg_SW1, _Parameters1_NT
+
+; Windows 2000/XP device specific
+[_Install.NTx86.HW]
+AddReg = _AddReg_HW1
+
+; Windows 2000/XP Services
+[_Install.NTx86.Services]
+AddService = %S_DriverName%, 0x00000002, _NT_AddService, _NT_EventLog
+
+
+;******************************************************************************
+; NT Service (Windows 2000/XP only)
+;------------------------------------------------------------------------------
+[_NT_AddService]
+DisplayName   = %S_ServiceDisplayName%
+ServiceType   = 1                  ; SERVICE_KERNEL_DRIVER
+StartType     = 3                  ; SERVICE_DEMAND_START
+ErrorControl  = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary = %10%\System32\Drivers\%S_DriverName%.sys
+
+[_NT_EventLog]
+AddReg = _NT_EventLog_AddReg
+
+[_NT_EventLog_AddReg]
+HKR,,EventMessageFile,0x00020000,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\drivers\%S_DriverName%.sys"
+HKR,,TypesSupported, 0x00010001, 7
+
+
+;******************************************************************************
+; Registry sections
+;------------------------------------------------------------------------------
+[_CustomClassAddReg]
+HKR,,,,%S_DeviceClassDescription%
+HKR,,Icon,,"109"
+HKR,,Installer32,,"classinst.dll, RenClassInstaller"
+
+[_AddReg_SW1]
+; create software key
+HKLM,"%S_ConfigPath%",,,
+HKLM,"%S_ConfigPath%"\"%S_DeviceConfigPath1%",,,
+
+[_AddReg_HW1]
+; create link to the configuration key
+HKR,,DriverConfigurationPath,,\Registry\Machine\%S_ConfigPath%\%S_DeviceConfigPath1%
+
+; ### for product, delete this cleanup wizard stuff ###
+HKR,,CleanupWizard_DeviceIdentString,,"{DAB6A146-D93E-48ab-B3E5-374AB8FFF277}"
+
+HKR,,DriverUserInterfaceGuid,,"{E7C8948F-4500-4867-9F71-F2D2B3D9B389}"
+
+[_Parameters1_NT]
+; Parameters used on Windows 2000 and Windows XP.
+; ### Set the default behaviour for your device by means of these startup parameters. ###
+; The flag 0x00010001 means that the type of the value is REG_DWORD.
+HKLM,"%S_ConfigPath%"\"%S_DeviceConfigPath1%",RequestTimeout,0x00010001, 1000
+HKLM,"%S_ConfigPath%"\"%S_DeviceConfigPath1%",ShortTransferOk,0x00010001, 1
+HKLM,"%S_ConfigPath%"\"%S_DeviceConfigPath1%",UnconfigureOnClose,0x00010001, 1
+HKLM,"%S_ConfigPath%"\"%S_DeviceConfigPath1%",ResetDeviceOnClose,0x00010001, 0
+HKLM,"%S_ConfigPath%"\"%S_DeviceConfigPath1%",EnableRemoteWakeup,0x00010001, 1
+HKLM,"%S_ConfigPath%"\"%S_DeviceConfigPath1%",PowerStateOnOpen,0x00010001, 0
+HKLM,"%S_ConfigPath%"\"%S_DeviceConfigPath1%",PowerStateOnClose,0x00010001, 0
+HKLM,"%S_ConfigPath%"\"%S_DeviceConfigPath1%",MinPowerStateUsed,0x00010001, 3
+HKLM,"%S_ConfigPath%"\"%S_DeviceConfigPath1%",MinPowerStateUnused,0x00010001, 3
+HKLM,"%S_ConfigPath%"\"%S_DeviceConfigPath1%",AbortPipesOnPowerDown,0x00010001, 1
+HKLM,"%S_ConfigPath%"\"%S_DeviceConfigPath1%",SuppressPnPRemoveDlg,0x00010001, 1
+HKLM,"%S_ConfigPath%"\"%S_DeviceConfigPath1%",MaxIsoPackets,0x00010001, 512
+
+
+;******************************************************************************
+; Copy file sections
+;------------------------------------------------------------------------------
+[_CopyFiles_sys]
+DX10.sys
+
+
+;******************************************************************************
+; Destination Directories
+;------------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir = 11, ; SYSTEM directory
+_CopyFiles_sys = 10,System32\Drivers
+_RenClassInstallerCopyFiles = 11 ; %SystemRoot%\system32
+
+
+;******************************************************************************
+; Disk Layout
+;------------------------------------------------------------------------------
+[SourceDisksNames]
+1 = %S_DiskName%,,,
+
+[SourceDisksFiles]
+DX10.sys = 1,,
+classinst.dll=1
+
+
+;******************************************************************************
+; Strings section
+; ### modify some of these entries ###
+; We have used a convention that all string names begin 'S_'.
+;------------------------------------------------------------------------------
+[Strings]
+
+S_Provider = "Renishaw plc"
+S_Mfg = "Renishaw"
+
+; driver file base names
+S_DriverName = "DX10"
+
+; service display name 
+S_ServiceDisplayName = "DX10 device driver"
+
+; configuration registry path (where the registry parameters will be located)
+S_ConfigPath="SYSTEM\CurrentControlSet\Services\DX10"
+
+; device-specific configuration registry path
+S_DeviceConfigPath1="Parameters"
+
+; device description
+S_DeviceDescription = "Renishaw DX10 USB interface"
+
+; disk name
+S_DiskName = "DX10 software disk"
+
+; device class friendly name, as will be displayed by DeviceManager
+S_DeviceClassDescription = "Measurement and calibration devices"
+
+
+; End of File

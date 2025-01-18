@@ -1,0 +1,6 @@
+D:\SOFT_REPO_GUM\renishawxl80sdk\XL-80_forum DLL\Renishaw DX10 SDK\Example CSharp\obj\x64\Debug\DX10ExAppCSharp.csproj.AssemblyReference.cache
+D:\SOFT_REPO_GUM\renishawxl80sdk\XL-80_forum DLL\Renishaw DX10 SDK\Example CSharp\obj\x64\Debug\DX10ExAppCSharp.csproj.SuggestedBindingRedirects.cache
+D:\SOFT_REPO_GUM\renishawxl80sdk\XL-80_forum DLL\Renishaw DX10 SDK\Example CSharp\obj\x64\Debug\DX10ExAppCSharp.csproj.ResolveComReference.cache
+D:\SOFT_REPO_GUM\renishawxl80sdk\XL-80_forum DLL\Renishaw DX10 SDK\Example CSharp\obj\x64\Debug\DX10ExAppCSharp.frmDX10Example.resources
+D:\SOFT_REPO_GUM\renishawxl80sdk\XL-80_forum DLL\Renishaw DX10 SDK\Example CSharp\obj\x64\Debug\DX10ExAppCSharp.csproj.GenerateResource.cache
+D:\SOFT_REPO_GUM\renishawxl80sdk\XL-80_forum DLL\Renishaw DX10 SDK\Example CSharp\obj\x64\Debug\DX10ExAppCSharp.csproj.CoreCompileInputs.cache
