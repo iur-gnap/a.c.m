@@ -204,6 +204,8 @@
 				<Item Name="Check if File or Folder Exists.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/libraryn.llb/Check if File or Folder Exists.vi"/>
 				<Item Name="Clear Errors.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Clear Errors.vi"/>
 				<Item Name="Error Cluster From Error Code.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Error Cluster From Error Code.vi"/>
+				<Item Name="ex_CorrectErrorChain.vi" Type="VI" URL="/&lt;vilib&gt;/express/express shared/ex_CorrectErrorChain.vi"/>
+				<Item Name="LVPoint32TypeDef.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/miscctls.llb/LVPoint32TypeDef.ctl"/>
 				<Item Name="NI_FileType.lvlib" Type="Library" URL="/&lt;vilib&gt;/Utility/lvfile.llb/NI_FileType.lvlib"/>
 				<Item Name="NI_PackedLibraryUtility.lvlib" Type="Library" URL="/&lt;vilib&gt;/Utility/LVLibp/NI_PackedLibraryUtility.lvlib"/>
 				<Item Name="Random Number (Range) DBL.vi" Type="VI" URL="/&lt;vilib&gt;/numeric/Random Number (Range) DBL.vi"/>
@@ -211,13 +213,19 @@
 				<Item Name="Random Number (Range) U64.vi" Type="VI" URL="/&lt;vilib&gt;/numeric/Random Number (Range) U64.vi"/>
 				<Item Name="Random Number (Range).vi" Type="VI" URL="/&lt;vilib&gt;/numeric/Random Number (Range).vi"/>
 				<Item Name="sub_Random U32.vi" Type="VI" URL="/&lt;vilib&gt;/numeric/sub_Random U32.vi"/>
+				<Item Name="subFile Dialog.vi" Type="VI" URL="/&lt;vilib&gt;/express/express input/FileDialogBlock.llb/subFile Dialog.vi"/>
+				<Item Name="Write Delimited Spreadsheet (DBL).vi" Type="VI" URL="/&lt;vilib&gt;/Utility/file.llb/Write Delimited Spreadsheet (DBL).vi"/>
+				<Item Name="Write Delimited Spreadsheet (I64).vi" Type="VI" URL="/&lt;vilib&gt;/Utility/file.llb/Write Delimited Spreadsheet (I64).vi"/>
+				<Item Name="Write Delimited Spreadsheet (string).vi" Type="VI" URL="/&lt;vilib&gt;/Utility/file.llb/Write Delimited Spreadsheet (string).vi"/>
+				<Item Name="Write Delimited Spreadsheet.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/file.llb/Write Delimited Spreadsheet.vi"/>
+				<Item Name="Write Spreadsheet String.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/file.llb/Write Spreadsheet String.vi"/>
 			</Item>
-			<Item Name="ComDX10Adaptor.dll" Type="Document" URL="../../../../SOFT_REPO_GUM/renishawxl80sdk/Dllx64/ComDX10Adaptor.dll"/>
+			<Item Name="ComDX10Adaptor.dll" Type="Document" URL="../../../../../SOFT_REPO_GUM/renishawxl80sdk/Dllx64/ComDX10Adaptor.dll"/>
 			<Item Name="Interop.DX10SDKADAPTORLib" Type="Document" URL="Interop.DX10SDKADAPTORLib">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
 			</Item>
-			<Item Name="Interop.DX10SDKADAPTORLib.dll" Type="Document" URL="../../../../A.C.M/Example CSharp_64/bin/Debug/Interop.DX10SDKADAPTORLib.dll"/>
-			<Item Name="Interop.DX10SDKADAPTORLib.dll" Type="Document" URL="../../../../SOFT_REPO_GUM/renishawxl80sdk/XL-80_forum DLL/Interop.DX10SDKADAPTORLib.dll"/>
+			<Item Name="Interop.DX10SDKADAPTORLib.dll" Type="Document" URL="../../../../../A.C.M/Example CSharp_64/bin/Debug/Interop.DX10SDKADAPTORLib.dll"/>
+			<Item Name="Interop.DX10SDKADAPTORLib.dll" Type="Document" URL="../../../../../SOFT_REPO_GUM/renishawxl80sdk/XL-80_forum DLL/Interop.DX10SDKADAPTORLib.dll"/>
 		</Item>
 		<Item Name="Build Specifications" Type="Build"/>
 	</Item>
