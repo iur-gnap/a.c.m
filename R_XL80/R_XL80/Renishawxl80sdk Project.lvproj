@@ -225,7 +225,6 @@
 			</Item>
 			<Item Name="Interop.DX10SDKADAPTORLib.dll" Type="Document" URL="../../../../../A.C.M/Example CSharp_64/bin/Debug/Interop.DX10SDKADAPTORLib.dll"/>
 			<Item Name="Interop.DX10SDKADAPTORLib.dll" Type="Document" URL="../../../../../SOFT_REPO_GUM/renishawxl80sdk/XL-80_forum DLL/Interop.DX10SDKADAPTORLib.dll"/>
-			<Item Name="null" Type="Document"/>
 		</Item>
 		<Item Name="Build Specifications" Type="Build"/>
 	</Item>
