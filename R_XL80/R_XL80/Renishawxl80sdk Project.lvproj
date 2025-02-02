@@ -146,6 +146,7 @@
 			<Property Name="NI.DISK" Type="Bool">true</Property>
 		</Item>
 		<Item Name="XL-80_forum DLL" Type="Folder">
+			<Property Name="NI.SortType" Type="Int">3</Property>
 			<Item Name="Renishaw DX10 SDK" Type="Folder">
 				<Item Name="Example CSharp" Type="Folder">
 					<Item Name=".vs" Type="Folder">
@@ -194,9 +195,9 @@
 			</Item>
 			<Item Name="Interop.DX10SDKADAPTORLib.dll" Type="Document" URL="../XL-80_forum DLL/Interop.DX10SDKADAPTORLib.dll"/>
 			<Item Name="renclassinst.dll" Type="Document" URL="../XL-80_forum DLL/renclassinst.dll"/>
-			<Item Name="TEST.vi" Type="VI" URL="../XL-80_forum DLL/TEST.vi"/>
 			<Item Name="XL80.sys" Type="Document" URL="../XL-80_forum DLL/XL80.sys"/>
 			<Item Name="xl80_w10.cat" Type="Document" URL="../XL-80_forum DLL/xl80_w10.cat"/>
+			<Item Name="TEST.vi" Type="VI" URL="../XL-80_forum DLL/TEST.vi"/>
 			<Item Name="XL80_w10.inf" Type="Document" URL="../XL-80_forum DLL/XL80_w10.inf"/>
 		</Item>
 		<Item Name="Dependencies" Type="Dependencies">
@@ -243,7 +244,7 @@
 				<Property Name="Bld_localDestDirType" Type="Str">relativeToCommon</Property>
 				<Property Name="Bld_modifyLibraryFile" Type="Bool">true</Property>
 				<Property Name="Bld_previewCacheID" Type="Str">{09C2AA65-D7B2-4948-BD17-465297CB86F9}</Property>
-				<Property Name="Bld_version.build" Type="Int">1</Property>
+				<Property Name="Bld_version.build" Type="Int">6</Property>
 				<Property Name="Bld_version.major" Type="Int">1</Property>
 				<Property Name="Destination[0].destName" Type="Str">XL80_Demo.exe</Property>
 				<Property Name="Destination[0].path" Type="Path">../builds/NI_AB_PROJECTNAME/XL80/XL80_Demo.exe</Property>
